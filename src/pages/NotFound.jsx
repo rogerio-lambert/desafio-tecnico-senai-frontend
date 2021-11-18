@@ -1,11 +1,13 @@
 import React from 'react';
-
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 function notFound(props) {
   return (
-    <div>
-      not found
-      
-    </div>
+    <Box>
+      <Typography variant="h2">
+        not found
+      </Typography>
+    </Box>
   );
 }
 
