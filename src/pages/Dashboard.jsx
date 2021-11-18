@@ -7,10 +7,9 @@ import ParameterConsole from '../components/ParameterConsole';
 
 const { io } = require("socket.io-client");
 require('dotenv').config();
-const {
-  updateDashboardListener,
-  loadDevicesListener,
-  switchOnOffListener } = require('../utils/dashboardListeners');
+const  updateDashboardListener = require('../utils/updateDashboardListener');
+const loadDevicesListener = require('../utils/loadDevicesListener')
+const switchOnOffListener = require('../utils/dashboardSwitchOnOffListener');
 
 const socketServerUrl = process.env.SOCKET_SERVER || 'https://desafio-tecnico-senai-backend.herokuapp.com';
 const socket = io(socketServerUrl);
