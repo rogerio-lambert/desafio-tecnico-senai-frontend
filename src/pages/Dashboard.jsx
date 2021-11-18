@@ -6,13 +6,14 @@ import SwitchOnOff from '../components/SwitchOnOff';
 import ParameterConsole from '../components/ParameterConsole';
 
 const { io } = require("socket.io-client");
+
 require('dotenv').config();
 const {
   updateDashboardListener,
   loadDevicesListener,
   switchOnOffListener } = require('../utils/dashboardListeners');
 
-const socketServerUrl = process.env.SOCKET_SERVER || 'https://desafio-tecnico-senai-backend.herokuapp.com/';
+const socketServerUrl = process.env.SOCKET_SERVER || 'https://desafio-tecnico-senai-backend.herokuapp.com';
 const socket = io(socketServerUrl);
 
 function Dashboard(props) {

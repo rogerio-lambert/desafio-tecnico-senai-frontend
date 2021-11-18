@@ -20,7 +20,7 @@ read projectName
 
 user="rogerio-lambert"
 
-repoName="$projectName""-trybe"
+repoName="$projectName"
 
 gh repo create $repoName -y --public
 
