@@ -12,7 +12,7 @@ const createIdListener = require('../utils/createIdListener');
 const switchOnOffListener = require('../utils/deviceSwitchOnOffListener')
 const controlDeviceListener = require('../utils/controlDeviceListener');
 
-const socketServerUrl = process.env.SOCKET_SERVER || 'https://desafio-tecnico-senai-backend.herokuapp.com';
+const socketServerUrl = 'https://desafio-tecnico-senai-backend.herokuapp.com';
 const socket = io(socketServerUrl);
 
 function Device(props) {

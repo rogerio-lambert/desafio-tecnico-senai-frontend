@@ -11,7 +11,7 @@ const  updateDashboardListener = require('../utils/updateDashboardListener');
 const loadDevicesListener = require('../utils/loadDevicesListener')
 const switchOnOffListener = require('../utils/dashboardSwitchOnOffListener');
 
-const socketServerUrl = process.env.SOCKET_SERVER || 'https://desafio-tecnico-senai-backend.herokuapp.com';
+const socketServerUrl = 'https://desafio-tecnico-senai-backend.herokuapp.com';
 const socket = io(socketServerUrl);
 
 function Dashboard(props) {
