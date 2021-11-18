@@ -1,3 +1,5 @@
+//---------------------------Importations block----------------------------------------------//
+
 import React, { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -5,11 +7,13 @@ import Box from '@mui/material/Box';
 import SwitchOnOff from '../components/SwitchOnOff';
 import ParameterConsole from '../components/ParameterConsole';
 
+//---------------------------socket server conection-------------------------------------------//
+
 const { io } = require("socket.io-client");
-require('dotenv').config();
-// const  updateDashboardListener = require('../utils/updateDashboardListener');
-// const loadDevicesListener = require('../utils/loadDevicesListener')
-// const switchOnOffListener = require('../utils/dashboardSwitchOnOffListener');
+const socketServerUrl = 'https://desafio-tecnico-senai-backend.herokuapp.com';
+const socket = io(socketServerUrl);
+
+//---------------------------Listener block----------------------------------------------//
 
 const  updateDashboardListener = (socket, onlineDevices, setOnlineDevices) => {
   socket.removeAllListeners('updateDashboard');
@@ -34,11 +38,15 @@ const switchOnOffListener = (socket, onlineDevices, setOnlineDevices) => {
   })
 };
 
-const socketServerUrl = 'https://desafio-tecnico-senai-backend.herokuapp.com';
-const socket = io(socketServerUrl);
+
 
 function Dashboard(props) {
+
+  //---------------------------States declarations block------------------------------------------//
+
   const [onlineDevices, setOnlineDevices] = useState({});
+
+  //-------------------------------useEffects block-----------------------------------------------//
 
   useEffect(() => {
     socket.emit('newDashboard');

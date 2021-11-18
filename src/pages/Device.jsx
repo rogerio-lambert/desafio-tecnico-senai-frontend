@@ -1,3 +1,4 @@
+//---------------------------Importations block----------------------------------------------//
 
 import React, { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
@@ -5,12 +6,13 @@ import Grid from '@mui/material/Grid';
 import SwitchOnOff from '../components/SwitchOnOff';
 import ParameterConsole from '../components/ParameterConsole';
 
-const { io } = require("socket.io-client");
-require('dotenv').config();
+//---------------------------socket server conection-------------------------------------------//
 
-// const createIdListener = require('../utils/createIdListener');
-// const switchOnOffListener = require('../utils/deviceSwitchOnOffListener')
-// const controlDeviceListener = require('../utils/controlDeviceListener');
+const { io } = require("socket.io-client");
+const socketServerUrl = 'https://desafio-tecnico-senai-backend.herokuapp.com';
+const socket = io(socketServerUrl);
+
+//---------------------------Listener block----------------------------------------------//
 
 const createIdListener = (socket, setDeviceId, params, controls, offMode) => {
   socket.on('createId', ({ id }) => {
@@ -41,10 +43,11 @@ const controlDeviceListener = (socket, deviceId, setControls, gain, params, setP
 };
 
 
-const socketServerUrl = 'https://desafio-tecnico-senai-backend.herokuapp.com';
-const socket = io(socketServerUrl);
 
 function Device(props) {
+
+  //---------------------------States declarations block------------------------------------------//
+
   const [controls, setControls] = useState({
     control1: 0,
     control2: 0,
@@ -56,6 +59,8 @@ function Device(props) {
   const [offMode, switchOffMode] = useState(false);
   const [deviceId, setDeviceId] = useState();
   const gain = [35.32, 64.47];
+
+  //-------------------------------useEffects block-----------------------------------------------//
 
   useEffect(() => {
     socket.emit('getId');
