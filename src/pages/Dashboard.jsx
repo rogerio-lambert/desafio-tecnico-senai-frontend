@@ -6,7 +6,6 @@ import SwitchOnOff from '../components/SwitchOnOff';
 import ParameterConsole from '../components/ParameterConsole';
 
 const { io } = require("socket.io-client");
-
 require('dotenv').config();
 const {
   updateDashboardListener,
