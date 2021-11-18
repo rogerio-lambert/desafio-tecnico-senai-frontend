@@ -7,9 +7,32 @@ import ParameterConsole from '../components/ParameterConsole';
 
 const { io } = require("socket.io-client");
 require('dotenv').config();
-const  updateDashboardListener = require('../utils/updateDashboardListener');
-const loadDevicesListener = require('../utils/loadDevicesListener')
-const switchOnOffListener = require('../utils/dashboardSwitchOnOffListener');
+// const  updateDashboardListener = require('../utils/updateDashboardListener');
+// const loadDevicesListener = require('../utils/loadDevicesListener')
+// const switchOnOffListener = require('../utils/dashboardSwitchOnOffListener');
+
+const  updateDashboardListener = (socket, onlineDevices, setOnlineDevices) => {
+  socket.removeAllListeners('updateDashboard');
+  socket.on('updateDashboard', ({ id, params, controls }) => {
+    const onlineDevicesUpdated = { ...onlineDevices };
+    onlineDevicesUpdated[id] = { ...onlineDevicesUpdated[id], params, controls };
+    setOnlineDevices(onlineDevicesUpdated);
+  })
+};;
+const loadDevicesListener =  (socket, setOnlineDevices) => {
+  socket.removeAllListeners('loadDevices');
+  socket.on('loadDevices', ({ devices }) => {
+    setOnlineDevices(devices);
+  })
+};
+const switchOnOffListener = (socket, onlineDevices, setOnlineDevices) => {
+  socket.removeAllListeners('switchOnOff');
+  socket.on('switchOnOff', ({ id, offMode }) => {
+    const onlineDevicesUpdated = { ...onlineDevices };
+    onlineDevicesUpdated[id] = { ...onlineDevicesUpdated[id], offMode};
+    setOnlineDevices(onlineDevicesUpdated);
+  })
+};
 
 const socketServerUrl = 'https://desafio-tecnico-senai-backend.herokuapp.com';
 const socket = io(socketServerUrl);
