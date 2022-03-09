@@ -8,7 +8,7 @@ Trata-se de uma simulação de coneção entre dispositivos (que poderiam ser Io
 <img src='socket-conection.png' width='100%'>
 </div>
 
-Os comandos e leituras dos dispositivos são atualizados em tempo real e o dashboard tem acesso plano a todos os controles dos dispositivos
+Os comandos e leituras dos dispositivos são atualizados em tempo real e o dashboard tem acesso plano a todos os controles dos dispositivos 
 
 ## Fluxos de funcionamento
 
